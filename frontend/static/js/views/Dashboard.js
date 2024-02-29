@@ -4,6 +4,14 @@ export default class extends AbstractView {
     constructor() {
         super()
         this.setTitle('Dashboard')
+        // Custom Component Specific Methods
+        this.delay = async duration => {
+            return new Promise(resolve => setTimeout(resolve, duration))
+        }
+        this.logHelloWorld = async () => {
+            await this.delay(2000)
+            console.log('Hello World')
+        }
     }
 
     async getHtml() {
@@ -19,13 +27,9 @@ export default class extends AbstractView {
         }
     }
 
-    // Component specific logic
+    // Component Specific Events Are Applied to The DOM Here
     afterRender() {
         const logButton = document.getElementById('logButton')
         logButton.addEventListener('click', this.logHelloWorld)
-    }
-
-    logHelloWorld() {
-        console.log('Hello World')
     }
 }
