@@ -146,3 +146,10 @@ are a few pitfalls I am anticipating beforehand including:
 -   Utilize [HTMX](https://htmx.org/) to dynamically render html elements.
 -   Investigate [DCode's solution on Auto Refreshing](https://www.youtube.com/watch?v=0v8oMKWP07w) for rendering aspects of the page without page reloading.
 -   Also see [DCode's Video on Using Slots](https://www.youtube.com/watch?v=r1BfaetMmP8) which may help with this as well. Not sure yet.
+
+**PROBLEM: PARENT/CHILD COMPONENTS AND PROPS**
+
+-   Creating truly reusable components with props and parent/child components is a
+    challenge in its own right. Using the shadow dom, custom web components, and
+    template tags might be the solution, but could possibly require a refactor of
+    how we approach creating "components"as it stands right now.
