@@ -5,4 +5,4 @@ if [ ! -f "./server" ]; then
     go build server.go
 fi
 
-parallel ::: "./server" "browser-sync start --port ${DEVPORT} --browser 'firefox' --proxy 'localhost:${PORT}' --files './**'"
+parallel ::: "./server" "browser-sync start --no-notify --port ${DEVPORT} --browser 'firefox' --proxy 'localhost:${PORT}' --files './**'"
