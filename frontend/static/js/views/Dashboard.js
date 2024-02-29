@@ -20,7 +20,8 @@ export default class extends AbstractView {
             if (!response.ok) {
                 throw new Error('Failed to load dashboard.html')
             }
-            return await response.text()
+            const purifiedText = await DOMPurify.sanitize(await response.text())
+            return purifiedText
         } catch (error) {
             console.error(error)
             return '<p>Error loading content</p>'
