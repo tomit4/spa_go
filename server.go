@@ -8,6 +8,13 @@ import (
 	"github.com/joho/godotenv"
 )
 
+func logRequest(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Request: %s %s", r.Method, r.URL.Path)
+		next(w, r)
+	}
+}
+
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -25,9 +32,9 @@ func main() {
 	tmpl := http.FileServer(http.Dir("./frontend/templates"))
 	http.Handle("/templates/", http.StripPrefix("/templates/", tmpl))
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/", logRequest(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./frontend/index.html")
-	})
+	}))
 
 	log.Printf("Server listening on port %s\n", port)
 	err = http.ListenAndServe(":"+port, nil)
