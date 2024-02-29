@@ -18,4 +18,14 @@ export default class extends AbstractView {
             return '<p>Error loading content</p>'
         }
     }
+
+    // Component specific logic
+    afterRender() {
+        const logButton = document.getElementById('logButton')
+        logButton.addEventListener('click', this.logHelloWorld)
+    }
+
+    logHelloWorld() {
+        console.log('Hello World')
+    }
 }

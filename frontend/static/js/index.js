@@ -90,6 +90,11 @@ const router = async () => {
 
     document.querySelector('#app').innerHTML = await view.getHtml()
 
+    // Loads component specific logic after html is rendered
+    if (typeof view.afterRender === 'function') {
+        view.afterRender()
+    }
+
     document.title = match.route.meta.title
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
