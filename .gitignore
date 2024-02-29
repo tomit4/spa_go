@@ -1,0 +1,5 @@
+*.env
+.prettierrc
+*.vim
+spa_go
+server
