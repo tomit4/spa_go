@@ -12,8 +12,7 @@ export default class extends AbstractView {
             if (!response.ok) {
                 throw new Error('Failed to load settings.html')
             }
-            const purifiedText = await DOMPurify.sanitize(await response.text())
-            return purifiedText
+            return await response.text()
         } catch (error) {
             console.error(error)
             return '<p>Error loading content</p>'

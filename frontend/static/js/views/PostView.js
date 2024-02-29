@@ -25,8 +25,7 @@ export default class extends AbstractView {
             }
             const html = await response.text()
             const renderedHtml = html.replace('{{postId}}', this.postId)
-            const purifiedText = await DOMPurify.sanitize(renderedHtml)
-            return purifiedText
+            return renderedHtml
         } catch (error) {
             console.error(error)
             return '<p>Error loading content</p>'
